@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSYCHIA — Child Development &amp; Parent Guidance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+--navy: #1E1B4B;
+--teal: #4FBDB5;
+--teal-deep: #33948D;
+--paper: #FFFFFF;
+--soft: #F5F7FA;
+--text: #2A2850;
+--text-soft: #5C5A7E;
+--line: #E4E4EE;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+background: var(--paper);
+color: var(--text);
+font-family: 'Inter', sans-serif;
+line-height: 1.65;
+font-size: 18px;
+}
+
+h1, h2, h3 { font-family: 'Fraunces', serif; color: var(--navy); }
+
+a { text-decoration: none; color: inherit; }
+
+.wrap {
+max-width: 640px;
+margin: 0 auto;
+padding: 0 28px;
+}
+
+/* NAV — minimal */
+nav {
+position: sticky;
+top: 0;
+z-index: 50;
+background: rgba(255,255,255,0.94);
+border-bottom: 1px solid var(--line);
+}
+nav .wrap {
+max-width: 680px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 76px;
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; }
+.nav-brand img { height: 32px; }
+.nav-brand span {
+font-family: 'Fraunces', serif;
+font-size: 20px;
+font-weight: 600;
+color: var(--navy);
+}
+.nav-btn {
+background: var(--navy);
+color: white;
+padding: 12px 22px;
+border-radius: 8px;
+font-size: 15px;
+font-weight: 500;
+}
+
+/* HERO */
+.hero {
+padding: 64px 0 48px;
+text-align: center;
+}
+.hero img.icon {
+height: 84px;
+margin-bottom: 28px;
+}
+.hero h1 {
+font-size: clamp(28px, 6vw, 38px);
+line-height: 1.35;
+font-weight: 600;
+}
+.hero p {
+margin-top: 20px;
+font-size: 18px;
+color: var(--text-soft);
+}
+.big-btn {
+display: block;
+width: 100%;
+max-width: 340px;
+margin: 32px auto 0;
+background: var(--navy);
+color: white;
+text-align: center;
+padding: 18px;
+border-radius: 10px;
+font-size: 17px;
+font-weight: 600;
+}
+.big-btn:hover { background: var(--teal-deep); }
+.sub-link {
+display: block;
+margin-top: 16px;
+font-size: 15px;
+color: var(--text-soft);
+text-decoration: underline;
+}
+
+/* SECTION — always simple stacked blocks */
+section {
+padding: 56px 0;
+border-top: 1px solid var(--line);
+}
+section h2 {
+font-size: 26px;
+font-weight: 600;
+margin-bottom: 20px;
+text-align: center;
+}
+section > .wrap > p.section-intro {
+text-align: center;
+color: var(--text-soft);
+font-size: 17px;
+margin-bottom: 36px;
+}
+
+/* WHO IT'S FOR — simple list, not cards */
+.simple-list {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+.simple-item {
+background: var(--soft);
+border-radius: 12px;
+padding: 22px 24px;
+}
+.simple-item h3 {
+font-size: 18px;
+font-weight: 600;
+margin-bottom: 6px;
+font-family: 'Inter', sans-serif;
+color: var(--navy);
+}
+.simple-item p {
+color: var(--text-soft);
+font-size: 16px;
+}
+
+/* STEPS — numbered, vertical, obvious order */
+.steps {
+display: flex;
+flex-direction: column;
+gap: 28px;
+}
+.step {
+display: flex;
+gap: 20px;
+align-items: flex-start;
+}
+.step-num {
+flex-shrink: 0;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: var(--navy);
+color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: 'Fraunces', serif;
+font-size: 17px;
+font-weight: 600;
+}
+.step h3 {
+font-size: 18px;
+font-weight: 600;
+font-family: 'Inter', sans-serif;
+color: var(--navy);
+margin-bottom: 4px;
+}
+.step p {
+color: var(--text-soft);
+font-size: 16px;
+}
+
+/* FAQ — plain accordion-free, just Q/A stacked */
+.faq-item {
+padding: 22px 0;
+border-bottom: 1px solid var(--line);
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-item h3 {
+font-size: 17px;
+font-weight: 600;
+font-family: 'Inter', sans-serif;
+color: var(--navy);
+margin-bottom: 8px;
+}
+.faq-item p {
+color: var(--text-soft);
+font-size: 16px;
+}
+
+/* PRICING */
+.price-list {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+.price-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: var(--soft);
+border-radius: 12px;
+padding: 20px 24px;
+gap: 16px;
+}
+.price-item.highlight {
+background: var(--navy);
+}
+.price-item.highlight h3,
+.price-item.highlight .price-desc {
+color: white;
+}
+.price-item.highlight .price-amount {
+color: var(--teal);
+}
+.price-info h3 {
+font-size: 17px;
+font-weight: 600;
+font-family: 'Inter', sans-serif;
+color: var(--navy);
+margin-bottom: 4px;
+}
+.price-desc {
+color: var(--text-soft);
+font-size: 15px;
+}
+.price-amount {
+font-family: 'Fraunces', serif;
+font-size: 22px;
+font-weight: 600;
+color: var(--navy);
+white-space: nowrap;
+}
+.price-note {
+text-align: center;
+color: var(--text-soft);
+font-size: 14.5px;
+margin-top: 24px;
+}
+
+/* CONSENT FORM */
+.consent-form {
+background: var(--soft);
+border-radius: 16px;
+padding: 32px 28px;
+}
+.consent-form label {
+display: block;
+font-size: 14.5px;
+font-weight: 500;
+color: var(--navy);
+margin-bottom: 6px;
+}
+.consent-form input[type="text"],
+.consent-form input[type="number"],
+.consent-form input[type="email"],
+.consent-form textarea {
+width: 100%;
+background: white;
+border: 1px solid var(--line);
+border-radius: 8px;
+padding: 12px 14px;
+font-family: 'Inter', sans-serif;
+font-size: 15.5px;
+color: var(--text);
+margin-bottom: 18px;
+}
+.consent-form input:focus,
+.consent-form textarea:focus {
+outline: 2px solid var(--teal);
+outline-offset: 1px;
+}
+.consent-check {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+margin-bottom: 12px;
+background: white;
+border-radius: 8px;
+padding: 14px 16px;
+border: 1px solid var(--line);
+}
+.consent-check input {
+margin-top: 3px;
+flex-shrink: 0;
+width: 18px;
+height: 18px;
+}
+.consent-check label {
+font-size: 14.5px;
+font-weight: 400;
+color: var(--text-soft);
+margin-bottom: 0;
+}
+.consent-form button {
+width: 100%;
+background: var(--navy);
+color: white;
+border: none;
+padding: 16px;
+border-radius: 8px;
+font-family: 'Inter', sans-serif;
+font-weight: 600;
+font-size: 16px;
+cursor: pointer;
+margin-top: 10px;
+}
+.consent-form button:hover { background: var(--teal-deep); }
+.consent-note {
+text-align: center;
+color: var(--text-soft);
+font-size: 14px;
+margin-top: 16px;
+}
+
+.consent-section-title {
+font-size: 15px;
+font-weight: 600;
+color: var(--teal-deep);
+text-transform: uppercase;
+letter-spacing: 0.04em;
+margin: 30px 0 12px;
+}
+.consent-section-title:first-of-type { margin-top: 4px; }
+
+.consent-static {
+background: var(--soft);
+border-radius: 10px;
+padding: 16px 18px;
+font-size: 15px;
+color: var(--text);
+margin-bottom: 12px;
+line-height: 1.6;
+}
+
+.yesno-group {
+display: flex;
+gap: 14px;
+margin-bottom: 12px;
+}
+.yesno-option {
+flex: 1;
+display: flex;
+align-items: center;
+gap: 8px;
+background: white;
+border: 1px solid var(--line);
+border-radius: 8px;
+padding: 12px 16px;
+font-size: 15px;
+color: var(--text);
+cursor: pointer;
+}
+.yesno-option input { width: 16px; height: 16px; }
+
+.signature-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 16px;
+}
+
+/* ABOUT — simple, no side-by-side */
+.about-block { text-align: center; }
+.about-block img {
+width: 160px;
+height: 160px;
+border-radius: 50%;
+object-fit: cover;
+object-position: center 30%;
+margin: 0 auto 24px;
+display: block;
+border: 4px solid var(--soft);
+box-shadow: 0 8px 24px rgba(30,27,75,0.12);
+}
+.about-block h3 {
+font-size: 22px;
+font-weight: 600;
+}
+.about-block .role {
+color: var(--teal-deep);
+font-size: 15px;
+font-weight: 500;
+margin: 6px 0 20px;
+}
+.about-block p {
+color: var(--text-soft);
+text-align: left;
+margin-bottom: 14px;
+}
+.cred-list {
+text-align: left;
+margin-top: 24px;
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.cred-list li {
+list-style: none;
+padding-left: 22px;
+position: relative;
+color: var(--text-soft);
+font-size: 15.5px;
+}
+.cred-list li::before {
+content: '✓';
+position: absolute;
+left: 0;
+color: var(--teal-deep);
+font-weight: 600;
+}
+
+/* CONTACT */
+.contact-section {
+background: var(--navy);
+color: white;
+text-align: center;
+}
+.contact-section h2 { color: white; }
+.contact-section p { color: rgba(255,255,255,0.75); }
+.contact-block {
+margin-top: 32px;
+display: flex;
+flex-direction: column;
+gap: 16px;
+align-items: center;
+}
+.contact-line {
+font-size: 17px;
+color: white;
+}
+.big-btn.light {
+background: var(--teal);
+color: var(--navy);
+}
+.big-btn.light:hover { background: white; }
+
+.whatsapp-options {
+margin-top: 32px;
+display: flex;
+flex-direction: column;
+gap: 14px;
+width: 100%;
+max-width: 380px;
+}
+.wa-option {
+display: flex;
+align-items: center;
+gap: 12px;
+background: rgba(255,255,255,0.08);
+border: 1px solid rgba(255,255,255,0.18);
+border-radius: 10px;
+padding: 16px 20px;
+color: white;
+font-size: 16px;
+font-weight: 500;
+text-align: left;
+transition: background 0.2s, border-color 0.2s;
+}
+.wa-option:hover {
+background: var(--teal);
+color: var(--navy);
+border-color: var(--teal);
+}
+.wa-icon { font-size: 18px; flex-shrink: 0; }
+
+.contact-divider {
+margin: 28px 0;
+color: rgba(255,255,255,0.4);
+font-size: 14px;
+}
+.availability {
+font-size: 12.5px;
+color: rgba(255,255,255,0.55);
+margin-top: -6px;
+margin-bottom: 4px;
+}
+
+footer {
+padding: 32px 0;
+text-align: center;
+font-size: 14px;
+color: var(--text-soft);
+}
+
+@media (max-width: 480px) {
+body { font-size: 16.5px; }
+.hero h1 { font-size: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+* { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="wrap">
+<a href="#" class="nav-brand">
+<img src="logo-icon.png" alt="">
+<span>PSYCHIA</span>
+</a>
+<a href="https://wa.me/917020131887?text=Hi%2C%20I%20am%20a%20new%20parent%20and%20would%20like%20to%20get%20started%20with%20PSYCHIA." class="nav-btn" target="_blank" rel="noopener">Book</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<img src="logo-icon.png" alt="PSYCHIA logo" class="icon">
+<h1>Practical guidance for your child's growing years</h1>
+<p>PSYCHIA helps parents understand their child better — through simple, practical sessions. No jargon. No judgement.</p>
+<a href="#contact" class="big-btn">Book a session</a>
+<a href="#faq" class="sub-link">Have questions first? Read the FAQ below</a>
+</div>
+</header>
+
+<section id="who">
+<div class="wrap">
+<h2>Is this for you?</h2>
+<p class="section-intro">If any of this sounds familiar, we can help.</p>
+<div class="simple-list">
+<div class="simple-item">
+<h3>You're worried about your child's behaviour</h3>
+<p>Tantrums, withdrawal, trouble at school, or changes you don't understand.</p>
+</div>
+<div class="simple-item">
+<h3>You want to parent with more confidence</h3>
+<p>Practical guidance for everyday situations — screen time, siblings, routines.</p>
+</div>
+<div class="simple-item">
+<h3>You want a second, informed perspective</h3>
+<p>Sometimes you just need someone experienced to say "this is normal" — or guide you if it needs attention.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="how">
+<div class="wrap">
+<h2>How it works</h2>
+<p class="section-intro">Four simple steps. No paperwork, no pressure.</p>
+<div class="steps">
+<div class="step">
+<div class="step-num">1</div>
+<div>
+<h3>Send a message</h3>
+<p>Tell us a little about your child and what's on your mind.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div>
+<h3>Have your initial session</h3>
+<p>A relaxed call or in-person chat — to understand your child and your situation in depth.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div>
+<h3>Get a simple plan</h3>
+<p>Clear, realistic next steps that fit your family — nothing overwhelming.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">4</div>
+<div>
+<h3>Check in as needed</h3>
+<p>Come back for follow-up sessions whenever you need to.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="wrap about-block">
+<img src="devyani-profile.jpeg" alt="Devyani Joshi, Founder of PSYCHIA">
+<h3>Devyani Joshi</h3>
+<div class="role">Founder &amp; Early Childhood Development Facilitator</div>
+<p>Every parent who comes to PSYCHIA is usually asking the same quiet question: <em>"Is this normal, and am I doing this right?"</em> Devyani Joshi built PSYCHIA to answer that honestly — without jargon or judgment. Her training is grounded in real classroom experience, not just theory: alongside her BA in Psychology, a completed Diploma in Early Childhood Care &amp; Education, and an ongoing Post Graduate Diploma in Counselling Psychology at Fergusson College, she's spent time actually teaching young children, which taught her that parents don't need to be told what's wrong — they need someone steady beside them while they figure out what's right for their child. Sessions are held in English, Hindi, or Marathi, whichever feels most natural to you.</p>
+<ul class="cred-list">
+<li>BA in Psychology, Modern College, Pune</li>
+<li>Diploma in Early Childhood Care &amp; Education</li>
+<li>PG Diploma in Counselling Psychology (in progress), Fergusson College</li>
+<li>Speaks English, Hindi, and Marathi</li>
+</ul>
+</div>
+</section>
+
+<section id="services-menu">
+<div class="wrap">
+<h2>How PSYCHIA can help</h2>
+<p class="section-intro">Two ways to work together, depending on what you need.</p>
+
+<div class="simple-list">
+<div class="simple-item">
+<h3>1:1 Sessions</h3>
+<p><strong>Initial session (30–45 min):</strong> understanding your child, your family context, and your concerns in depth.</p>
+<p><strong>Follow-up sessions (30 min):</strong> ongoing guidance and tracking progress over time.</p>
+<p style="margin-top:10px;">Common areas we work on: sleep &amp; routines, tantrums &amp; emotional regulation, school-readiness, sibling dynamics, screen time, feeding issues, and separation anxiety.</p>
+</div>
+<div class="simple-item">
+<h3>Group Workshops</h3>
+<p>Small-group sessions for parents (1 hour each), run online via Zoom/Google Meet, or in-person at a rented space or café in Pune.</p>
+<p style="margin-top:10px;">
+<strong>Current topics:</strong><br>
+"Handling Tantrums Without Losing It"<br>
+"Building Routines That Actually Stick"<br>
+"Getting Your Child School-Ready"<br>
+"Positive Discipline 101"
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="pricing">
+<div class="wrap">
+<h2>Simple, upfront pricing</h2>
+<p class="section-intro">No hidden costs. Pay only for what you book.</p>
+<div class="price-list">
+<div class="price-item highlight">
+<div class="price-info">
+<h3>Initial session</h3>
+<div class="price-desc">30–45 minutes, one-on-one</div>
+</div>
+<div class="price-amount">₹900</div>
+</div>
+<div class="price-item">
+<div class="price-info">
+<h3>Follow-up session</h3>
+<div class="price-desc">30 minutes, one-on-one</div>
+</div>
+<div class="price-amount">₹600</div>
+</div>
+<div class="price-item">
+<div class="price-info">
+<h3>Group workshop</h3>
+<div class="price-desc">1 hour, per parent attending</div>
+</div>
+<div class="price-amount">₹400</div>
+</div>
+</div>
+<p class="price-note">Workshop price is per parent — if both parents attend, that's ₹400 each.</p>
+<p class="price-note">Sessions cancelled after booking are non-refundable.</p>
+</div>
+</section>
+
+<section id="faq">
+<div class="wrap">
+<h2>Common questions</h2>
+<div class="faq-item">
+<h3>Is this only for serious problems?</h3>
+<p>No. Many parents come just to talk through everyday concerns — this isn't only for emergencies.</p>
+</div>
+<div class="faq-item">
+<h3>Will this be kept private?</h3>
+<p>Yes. What you share stays confidential, with care taken at every step.</p>
+</div>
+<div class="faq-item">
+<h3>Can sessions be online?</h3>
+<p>Yes — available both online and in person in Pune.</p>
+</div>
+<div class="faq-item">
+<h3>What languages are sessions in?</h3>
+<p>English, Hindi, or Marathi — whichever you're most comfortable with.</p>
+</div>
+<div class="faq-item">
+<h3>How much does it cost?</h3>
+<p>An initial session is ₹900, follow-up sessions are ₹600, and group workshops are ₹400 per parent — see full pricing above.</p>
+</div>
+</div>
+</section>
+
+<section id="consent">
+<div class="wrap">
+<h2>Parent consent form</h2>
+<p class="section-intro">Please fill this before your first session — it only takes a few minutes.</p>
+<form class="consent-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Consent submitted';">
+
+<div class="consent-section-title">1. Parent / Child Details</div>
+<label for="parent-name">Parent / guardian name</label>
+<input id="parent-name" type="text" placeholder="Your full name" required>
+
+<label for="parent-contact">Your phone or email</label>
+<input id="parent-contact" type="text" placeholder="Phone number or email" required>
+
+<label for="child-name">Child's name</label>
+<input id="child-name" type="text" placeholder="Child's full name" required>
+
+<label for="child-age-consent">Child's age</label>
+<input id="child-age-consent" type="number" min="0" max="6" placeholder="Age in years" required>
+
+<label for="consent-notes">Anything we should know before the first session?</label>
+<textarea id="consent-notes" rows="3" placeholder="Optional — any concerns or context"></textarea>
+
+<div class="consent-section-title">2. Service Description</div>
+<div class="consent-static">PSYCHIA provides Parent Education sessions and workshops for early childhood (ages 0–6 years). These are <strong>educational in nature</strong> and do not constitute therapy, counselling, or clinical diagnosis of any kind.</div>
+
+<div class="consent-section-title">3. Scope &amp; Limitations</div>
+<div class="consent-check">
+<input type="checkbox" id="consent-scope" required>
+<label for="consent-scope">I understand that PSYCHIA offers general parenting and developmental guidance only. It does not provide diagnosis, clinical treatment, or case management. For clinical or therapeutic needs, I will consult a licensed professional.</label>
+</div>
+
+<div class="consent-section-title">4. Age / Group Confirmation</div>
+<div class="consent-check">
+<input type="checkbox" id="consent-age" required>
+<label for="consent-age">I confirm that my child falls within the 0–6 years age range that PSYCHIA's services are designed for.</label>
+</div>
+
+<div class="consent-section-title">5. Confidentiality</div>
+<div class="consent-check">
+<input type="checkbox" id="consent-confidential" required>
+<label for="consent-confidential">I understand that information I share will be kept strictly confidential and used only to support the service provided, except where there is a genuine concern for my child's safety or the safety of others.</label>
+</div>
+
+<div class="consent-section-title">6. Parent / Guardian Consent</div>
+<div class="consent-check">
+<input type="checkbox" id="consent-guardian" required>
+<label for="consent-guardian">I confirm that I am the legal parent or guardian of the child named above, and I give consent for my child to take part in this session.</label>
+</div>
+
+<div class="consent-section-title">7. Photo / Video / Testimonial Consent (optional)</div>
+<div class="yesno-group">
+<label class="yesno-option"><input type="radio" name="media-consent" value="yes"> Yes, I consent</label>
+<label class="yesno-option"><input type="radio" name="media-consent" value="no"> No, I do not consent</label>
+</div>
+<p style="font-size:14px; color:var(--text-soft); margin-bottom:16px;">This covers use of photos, videos, or written testimonials from sessions for PSYCHIA's promotional materials. This is optional and does not affect your ability to book a session.</p>
+
+<div class="consent-section-title">8. Fee &amp; Cancellation Policy</div>
+<div class="consent-check">
+<input type="checkbox" id="consent-fee" required>
+<label for="consent-fee">I understand the session/workshop price shared with me, that rescheduling is allowed with prior notice, and that no refund is given if a session is cancelled after booking.</label>
+</div>
+
+<div class="consent-section-title">9. Emergency / Crisis Disclaimer</div>
+<div class="consent-check">
+<input type="checkbox" id="consent-emergency" required>
+<label for="consent-emergency">I understand that PSYCHIA is not equipped to handle medical, psychiatric, or crisis emergencies. In such situations, I will contact a licensed professional or emergency services directly.</label>
+</div>
+
+<div class="consent-section-title">10. Liability Waiver</div>
+<div class="consent-check">
+<input type="checkbox" id="consent-liability" required>
+<label for="consent-liability">I understand that PSYCHIA provides general educational guidance, and is not liable for outcomes resulting from decisions I make based on this guidance.</label>
+</div>
+
+<div class="consent-section-title">11. Right to Refuse / Discontinue Service</div>
+<div class="consent-check">
+<input type="checkbox" id="consent-refuse" required>
+<label for="consent-refuse">I understand that PSYCHIA may discontinue a session if a concern is identified as being outside its scope, and will refer me to an appropriate professional in that case.</label>
+</div>
+
+<div class="consent-section-title">12. Governing Terms</div>
+<div class="consent-check">
+<input type="checkbox" id="consent-governing" required>
+<label for="consent-governing">I confirm that I have read and understood all the terms above, and that I am providing this consent voluntarily.</label>
+</div>
+
+<div class="consent-section-title">13. Signature</div>
+<div class="signature-row">
+<div>
+<label for="sig-name">Full name</label>
+<input id="sig-name" type="text" placeholder="Type full name as signature" required>
+</div>
+<div>
+<label for="sig-date">Date</label>
+<input id="sig-date" type="text" placeholder="DD/MM/YYYY" required>
+</div>
+</div>
+
+<button type="submit">Submit consent form</button>
+<p class="consent-note">For any questions, contact PSYCHIA at psychia.counselling02@gmail.com or +91 70201 31887.</p>
+</form>
+</div>
+</section>
+
+<section class="contact-section" id="contact">
+<div class="wrap">
+<h2>Ready to talk?</h2>
+<p>Message us on WhatsApp — pick whichever fits what you need.</p>
+<div class="whatsapp-options">
+<a href="https://wa.me/917020131887?text=Hi%2C%20I%20am%20a%20new%20parent%20and%20would%20like%20to%20get%20started%20with%20PSYCHIA." class="wa-option" target="_blank" rel="noopener">
+<span class="wa-icon">👋</span> New parent? Start here
+</a>
+<a href="https://wa.me/917020131887?text=Hi%2C%20I%20would%20like%20to%20book%20another%20session%20with%20PSYCHIA." class="wa-option" target="_blank" rel="noopener">
+<span class="wa-icon">🔁</span> Returning for another session
+</a>
+<a href="https://wa.me/917020131887?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20workshops." class="wa-option" target="_blank" rel="noopener">
+<span class="wa-icon">🌱</span> Curious about workshops
+</a>
+<a href="https://wa.me/917020131887?text=Hi%2C%20I%20have%20a%20question%20about%20PSYCHIA." class="wa-option" target="_blank" rel="noopener">
+<span class="wa-icon">✦</span> I have a question
+</a>
+</div>
+<p class="availability" style="text-align:center; margin-top:14px;">WhatsApp available 10 AM – 8 PM</p>
+<div class="contact-divider">or reach out directly</div>
+<div class="contact-block">
+<a href="mailto:psychia.counselling02@gmail.com" class="contact-line">psychia.counselling02@gmail.com</a>
+<a href="tel:+917020131887" class="contact-line">+91 70201 31887</a>
+<p class="availability">Calls available 12 PM – 6 PM</p>
+</div>
+</div>
+</section>
+
+<footer>
+PSYCHIA — Devyani Joshi · Pune, Maharashtra
+</footer>
+
+</body>
+</html>
